@@ -1,11 +1,11 @@
 import css from './Notification.module.css';
 
-function Notisication() {
+function Notification() {
   return (
     <div className={css.notification}>
-      <p className={css.message}>No feedback given</p>
+      <p className={css.message}>No feedback yet</p>
     </div>
   );
 }
 
-export default Notisication;
+export default Notification;

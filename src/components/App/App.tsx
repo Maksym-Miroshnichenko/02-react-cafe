@@ -30,6 +30,9 @@ function App() {
   }
 
   const totalVotes = votes.good + votes.neutral + votes.bad;
+  const positiveRate = totalVotes === 0
+    ? 0
+    : Math.round((votes.good / totalVotes) * 100);
 
   return (
     <>
@@ -37,10 +40,18 @@ function App() {
       <CafeInfo/>
       <VoteOptions
         onVote={addVote}
-        resetVotes={resetVotes}
-        hasVotes={totalVotes > 0}
+        onReset={resetVotes}
+        canReset={totalVotes > 0}
       />
-      {totalVotes === 0 ? <Notification /> : <VoteStats votes={votes} />}
+      {totalVotes === 0 ? (
+        <Notification />
+      ) : (
+        <VoteStats
+          votes={votes}
+          totalVotes={totalVotes}
+          positiveRate={positiveRate}
+        />
+      )}
     </div>
     </>
   )
